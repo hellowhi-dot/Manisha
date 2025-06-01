@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Heart, Wine, Music, Coffee } from 'lucide-react';
 
@@ -8,6 +8,7 @@ interface Mood {
   description: string;
   color: string;
   song: string;
+  songUrl: string;
   message: string;
 }
 
@@ -18,6 +19,7 @@ const moods: Mood[] = [
     description: "When thoughts of you take over",
     color: "text-neon-400",
     song: "Can't Help Falling in Love - Elvis Presley",
+    songUrl: "https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3",
     message: "Every love song makes me think of June 4th..."
   },
   {
@@ -26,6 +28,7 @@ const moods: Mood[] = [
     description: "Ready for adventure",
     color: "text-electric-400",
     song: "Don't Stop Believin' - Journey",
+    songUrl: "https://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a",
     message: "Let's make the night unforgettable"
   },
   {
@@ -34,6 +37,7 @@ const moods: Mood[] = [
     description: "Lost in thoughts of us",
     color: "text-purple-400",
     song: "Perfect - Ed Sheeran",
+    songUrl: "https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3",
     message: "Dancing with you under the stars..."
   },
   {
@@ -42,6 +46,7 @@ const moods: Mood[] = [
     description: "Intimate conversations",
     color: "text-amber-400",
     song: "Say You Won't Let Go - James Arthur",
+    songUrl: "https://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/intromusic.ogg",
     message: "Just us, talking till sunrise"
   }
 ];
@@ -49,13 +54,84 @@ const moods: Mood[] = [
 const MoodBoard: React.FC = () => {
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [audioError, setAudioError] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleMoodSelect = (mood: Mood) => {
     setSelectedMood(mood);
-    const select = new Audio('https://cdn.freesound.org/previews/147/147242_2614803-lq.mp3');
+    setAudioError(null);
+
+    // Play selection sound
+    const select = new Audio('https://commondatastorage.googleapis.com/codeskulptor-assets/week7-button.m4a');
     select.volume = 0.2;
-    select.play();
+    select.play().catch(e => console.log('Select sound failed:', e));
+
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current.src = mood.songUrl;
+      
+      // Add a small delay to ensure the audio source is loaded
+      setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.play()
+            .then(() => {
+              setIsPlaying(true);
+              console.log('Audio started playing');
+            })
+            .catch(error => {
+              console.error('Audio playback failed:', error);
+              setAudioError('Failed to play audio. The audio file may not be available.');
+              setIsPlaying(false);
+            });
+        }
+      }, 100);
+    }
   };
+
+  const handlePlayPause = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+          setAudioError(null);
+        })
+        .catch(error => {
+          console.error('Audio playback failed:', error);
+          setAudioError('Failed to play audio. The audio file may not be available.');
+          setIsPlaying(false);
+        });
+    }
+  };
+
+  const handleAudioEnded = () => {
+    setIsPlaying(false);
+  };
+
+  const handleAudioError = (e: any) => {
+    console.error('Audio error:', e);
+    setAudioError('Audio file could not be loaded.');
+    setIsPlaying(false);
+  };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.addEventListener('ended', handleAudioEnded);
+      audio.addEventListener('error', handleAudioError);
+      
+      return () => {
+        audio.removeEventListener('ended', handleAudioEnded);
+        audio.removeEventListener('error', handleAudioError);
+        audio.pause();
+      };
+    }
+  }, []);
 
   return (
     <div className="relative min-h-screen py-16 px-4 overflow-hidden">
@@ -80,9 +156,16 @@ const MoodBoard: React.FC = () => {
           {moods.map((mood, index) => (
             <motion.div
               key={index}
-              className={`glass p-6 cursor-pointer ${
-                selectedMood?.title === mood.title ? 'border-2 border-' + mood.color.replace('text-', '') : ''
+              className={`glass p-6 cursor-pointer transition-all duration-300 ${
+                selectedMood?.title === mood.title 
+                  ? 'border-2 border-opacity-50 shadow-lg' 
+                  : 'hover:shadow-md'
               }`}
+              style={{
+                borderColor: selectedMood?.title === mood.title 
+                  ? mood.color.replace('text-', '').replace('-400', '')
+                  : 'transparent'
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => handleMoodSelect(mood)}
@@ -123,14 +206,25 @@ const MoodBoard: React.FC = () => {
               <div className="mb-6">
                 <p className="text-lg mb-2">Current Song:</p>
                 <div className="glass p-4 flex items-center justify-between">
-                  <span className="text-neon-400">{selectedMood.song}</span>
+                  <span className="text-neon-400 flex-1">{selectedMood.song}</span>
                   <button
-                    className={`p-2 rounded-full ${isPlaying ? 'bg-neon-400' : 'bg-midnight-800'}`}
-                    onClick={() => setIsPlaying(!isPlaying)}
+                    className={`p-3 rounded-full transition-all duration-200 ${
+                      isPlaying 
+                        ? 'bg-neon-400 text-midnight-900 hover:bg-neon-300' 
+                        : 'bg-midnight-800 text-cream-100 hover:bg-midnight-700'
+                    }`}
+                    onClick={handlePlayPause}
+                    disabled={!!audioError}
                   >
-                    {isPlaying ? "▶" : "■"}
+                    {isPlaying ? "⏸️" : "▶️"}
                   </button>
                 </div>
+                
+                {audioError && (
+                  <div className="mt-2 p-3 bg-red-900/20 border border-red-500/30 rounded-lg">
+                    <p className="text-red-400 text-sm">{audioError}</p>
+                  </div>
+                )}
               </div>
 
               <div className="text-center">
@@ -139,6 +233,16 @@ const MoodBoard: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Persistent audio element */}
+        <audio 
+          ref={audioRef} 
+          loop 
+          preload="metadata"
+          onLoadStart={() => console.log('Audio loading started')}
+          onCanPlay={() => console.log('Audio can play')}
+          onLoadedData={() => console.log('Audio loaded')}
+        />
       </div>
     </div>
   );
