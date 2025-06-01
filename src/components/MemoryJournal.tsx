@@ -27,9 +27,9 @@ const memories: Memory[] = [
   },
   {
     id: 3,
-    date: "March 21",
+    date: "May 25",
     title: "Late Night Confessions",
-    content: "Your voice at 3 AM is my favorite sound in the world.",
+    content: "Your voice at 2 AM is my favorite sound in the world.",
     mood: "✨"
   },
   {
