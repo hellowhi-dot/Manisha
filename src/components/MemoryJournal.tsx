@@ -34,7 +34,7 @@ const memories: Memory[] = [
   },
   {
     id: 4,
-    date: "April 15",
+    date: "July 15",
     title: "Study Break Thoughts",
     content: "Even when you're deep in CA prep, you make time to light up my day.",
     mood: "📚"
