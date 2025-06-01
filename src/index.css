@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-cream-50 bg-midnight-950 overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 text-lg font-medium text-midnight-950 bg-neon-400 rounded-full shadow-lg 
+           hover:bg-neon-300 transition-all duration-300 transform hover:scale-105 
+           focus:outline-none focus:ring-2 focus:ring-neon-500 focus:ring-opacity-50;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-cream-50 mb-6;
+  }
+  
+  .section-subtitle {
+    @apply text-xl md:text-2xl font-script text-neon-400 mb-4;
+  }
+  
+  .script-text {
+    @apply font-script text-neon-300;
+  }
+  
+  .glass {
+    @apply bg-midnight-900/30 backdrop-blur-sm border border-midnight-700/50 rounded-xl;
+  }
+  
+  .neon-glow {
+    @apply shadow-[0_0_15px_rgba(244,114,182,0.6)];
+  }
+
+  .electric-glow {
+    @apply shadow-[0_0_15px_rgba(59,130,246,0.6)];
+  }
+}
+
+.typewriter {
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  border-right: 3px solid;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #f472b6; }
+}
+
+.custom-cursor {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
+
+.parallax-layer {
+  will-change: transform;
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(244, 114, 182, 0.8), 0 0 20px rgba(244, 114, 182, 0.5);
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: confetti-fall 5s linear forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: shooting 1.5s linear forwards;
+  opacity: 0;
+}
+
+@keyframes shooting {
+  0% {
+    transform: translateX(0) translateY(0) rotate(45deg) scale(1);
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1), 0 0 10px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    transform: translateX(200px) translateY(200px) rotate(45deg) scale(0.1);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.wheel-container {
+  perspective: 1000px;
+}
+
+.wheel {
+  transform-style: preserve-3d;
+  transition: transform 5s cubic-bezier(0.17, 0.67, 0.1, 1);
+}

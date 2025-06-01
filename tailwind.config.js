@@ -1,0 +1,91 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        midnight: {
+          50: '#f5f3ff',
+          100: '#ede8ff',
+          200: '#d9d0ff',
+          300: '#baa8ff',
+          400: '#9775ff',
+          500: '#7c42ff',
+          600: '#6e29f7',
+          700: '#5d1fe4',
+          800: '#4b1abb',
+          900: '#3d1897',
+          950: '#2c0d71',
+        },
+        neon: {
+          50: '#fdf2f8',
+          100: '#fce7f3',
+          200: '#fbcfe8',
+          300: '#f9a8d4',
+          400: '#f472b6',
+          500: '#ec4899',
+          600: '#db2777',
+          700: '#be185d',
+          800: '#9d174d',
+          900: '#831843',
+          950: '#500724',
+        },
+        electric: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
+        },
+        cream: {
+          50: '#fefce8',
+          100: '#fef9c3',
+          200: '#fef08a',
+          300: '#fee665',
+          400: '#fcd34d',
+          500: '#f9bf21',
+          600: '#e29e11',
+          700: '#b77e13',
+          800: '#946318',
+          900: '#7a5318',
+          950: '#442d09',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        script: ['Parisienne', 'cursive'],
+      },
+      animation: {
+        'float': 'float 6s ease-in-out infinite',
+        'pulse-slow': 'pulse 4s ease-in-out infinite',
+        'shimmer': 'shimmer 2.5s linear infinite',
+        'glow': 'glow 3s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-400px 0' },
+          '100%': { backgroundPosition: '400px 0' },
+        },
+        glow: {
+          '0%, 100%': { opacity: 0.7 },
+          '50%': { opacity: 1 },
+        },
+      },
+      backgroundImage: {
+        'kolkata-skyline': "url('https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg')",
+        'jamshedpur-skyline': "url('https://images.pexels.com/photos/3052361/pexels-photo-3052361.jpeg')",
+      },
+    },
+  },
+  plugins: [],
+};
