@@ -9,7 +9,7 @@ const AudioControl: React.FC = () => {
   useEffect(() => {
     // Create Howl instance
     const backgroundMusic = new Howl({
-      src: ['https://cdn.freesound.org/previews/616/616224_6711134-lq.mp3'], // Using a lofi beat from freesound
+      src: ['https://files.catbox.moe/5fz7jm.mp3'], // Using a lofi beat from freesound
       loop: true,
       volume: 0.4,
       autoplay: false,
