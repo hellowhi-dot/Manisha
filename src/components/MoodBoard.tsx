@@ -13,15 +13,16 @@ interface Mood {
 }
 
 const moods: Mood[] = [
-  {
-    icon: <Heart className="w-8 h-8" />,
-    title: "Romantic",
-    description: "When thoughts of you take over",
-    color: "text-neon-400",
-    song: "Can't Help Falling in Love - Elvis Presley",
-    songUrl: "https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3",
-    message: "Every love song makes me think of June 4th..."
-  },
+ {
+  icon: <Heart className="w-8 h-8" />,
+  title: "Romantic",
+  description: "My Heart Will Go On",
+  color: "text-neon-400",
+  song: "My Heart Will Go On - Celine Dion",
+  songUrl: "https://files.catbox.moe/ws6ga9.mp3",
+  message: "Every love song makes me think of June 4th..."
+}
+,
   {
     icon: <Wine className="w-8 h-8" />,
     title: "Wild",
@@ -37,18 +38,18 @@ const moods: Mood[] = [
     description: "Lost in thoughts of us",
     color: "text-purple-400",
     song: "Perfect - Ed Sheeran",
-    songUrl: "https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3",
+    songUrl: "https://files.catbox.moe/vmawqf.mp3",
     message: "Dancing with you under the stars..."
   },
-  {
-    icon: <Coffee className="w-8 h-8" />,
-    title: "Cozy",
-    description: "Intimate conversations",
-    color: "text-amber-400",
-    song: "Say You Won't Let Go - James Arthur",
-    songUrl: "https://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/intromusic.ogg",
-    message: "Just us, talking till sunrise"
-  }
+ {
+  icon: <Coffee className="w-8 h-8" />,
+  title: "Cozy",
+  description: "Thinking Out Loud",
+  color: "text-amber-400",
+  song: "Thinking Out Loud - Ed Sheeran",
+  songUrl: "https://files.catbox.moe/9nxca2.mp3",
+  message: "Just us, talking till sunrise"
+}
 ];
 
 const MoodBoard: React.FC = () => {
