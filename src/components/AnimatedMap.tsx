@@ -98,32 +98,33 @@ const AnimatedMap: React.FC = () => {
             </div>
           </motion.div>
           
-          {/* June 4 Meeting Point */}
-          <motion.div 
-            className="absolute bottom-[25%] right-[30%]"
-            initial={{ scale: 0, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="w-6 h-6 rounded-full bg-gradient-to-r from-electric-400 to-neon-400"
-              animate={{ 
-                boxShadow: [
-                  "0 0 0 0 rgba(244, 114, 182, 0.7)",
-                  "0 0 0 10px rgba(244, 114, 182, 0)",
-                  "0 0 0 0 rgba(244, 114, 182, 0.7)"
-                ]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            ></motion.div>
-            
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 whitespace-nowrap">
-              <p className="text-sm font-medium bg-midnight-800/80 px-2 py-1 rounded text-cream-50">
-                June 4: Meet-Up <span className="text-neon-400">♥</span>
-              </p>
-            </div>
-          </motion.div>
+         {/* June 4 Meeting Point */}
+<motion.div 
+  className="absolute bottom-[35%] left-[30%]"
+  initial={{ scale: 0, opacity: 0 }}
+  whileInView={{ scale: 1, opacity: 1 }}
+  transition={{ duration: 0.6, delay: 1 }}
+  viewport={{ once: true }}
+>
+  <motion.div 
+    className="w-6 h-6 rounded-full bg-gradient-to-r from-electric-400 to-neon-400"
+    animate={{ 
+      boxShadow: [
+        "0 0 0 0 rgba(244, 114, 182, 0.7)",
+        "0 0 0 10px rgba(244, 114, 182, 0)",
+        "0 0 0 0 rgba(244, 114, 182, 0.7)"
+      ]
+    }}
+    transition={{ duration: 2, repeat: Infinity }}
+  ></motion.div>
+  
+  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 whitespace-nowrap">
+    <p className="text-sm font-medium bg-midnight-800/80 px-2 py-1 rounded text-cream-50">
+      June 4: Meet-Up <span className="text-neon-400">♥</span>
+    </p>
+  </div>
+</motion.div>
+
           
           {/* Connecting Line */}
           <svg 

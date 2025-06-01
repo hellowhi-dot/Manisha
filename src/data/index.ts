@@ -3,27 +3,27 @@ import { OutfitCard, FriendCard, ConfessionMessage, WheelSection } from '../type
 export const outfits: OutfitCard[] = [
   {
     id: 1,
-    image: 'https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg',
+    image: 'https://i.postimg.cc/BtBfgH6Y/photo1.jpg',
     caption: 'Too hot for January'
   },
   {
     id: 2,
-    image: 'https://images.pexels.com/photos/1755428/pexels-photo-1755428.jpeg',
+    image: 'https://i.postimg.cc/cgfXdRjV/photo2.jpg',
     caption: 'Perfect for a rooftop wine'
   },
   {
     id: 3,
-    image: 'https://images.pexels.com/photos/914668/pexels-photo-914668.jpeg',
+    image: 'https://i.postimg.cc/q60QqtHg/photo3.jpg',
     caption: 'Made for stealing attention'
   },
   {
     id: 4,
-    image: 'https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg',
+    image: 'https://i.postimg.cc/FY7tN6x8/photo4.jpg',
     caption: 'You > Trends'
   },
   {
     id: 5,
-    image: 'https://images.pexels.com/photos/1381556/pexels-photo-1381556.jpeg',
+    image: 'https://i.postimg.cc/dh8fsKyW/photo5.jpg',
     caption: 'When Kolkata nights call'
   }
 ];
