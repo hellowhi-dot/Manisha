@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
           
           <div className="mt-8 pt-8 border-t border-midnight-800">
             <p className="text-cream-100/60 text-sm">
-              Created with anticipation for M <span className="text-neon-400">♥</span> See you on June 4th
+              Created by Raj with anticipation for Manisha(❤️) <span className="text-neon-400">♥</span> See you on June 4th
             </p>
           </div>
         </motion.div>
